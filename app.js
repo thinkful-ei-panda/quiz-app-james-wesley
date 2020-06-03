@@ -1,11 +1,16 @@
+'use strict'
+
 /**
  * Example store structure
  */
+
+
+
 const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'What color is the Incredible Hulk?',
       answers: [
         'red',
         'orange',
@@ -15,15 +20,44 @@ const store = {
       correctAnswer: 'green'
     },
     {
-      question: 'What is the current year?',
+      question: 'Which Avenger is a Norse God?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'Thor',
+        'Scarlet Witch',
+        'Black Widow',
+        'Iron Man'
       ],
-      correctAnswer: '2019'
+      correctAnswer: 'Thor'
+    },
+    {
+      question: 'What does Billy Batson say to transform into a hero?',
+      answers: [
+        'Kapow',
+        'Shazam',
+        'Abra-cadabra',
+        'Sinbad'
+      ],
+      correctAnswer: 'Shazam'
+    },    {
+      question: "Who was Peter Parker's first love interest?",
+      answers: [
+        'Mary Jane',
+        'Wanda Maximoff',
+        'Gwen Stacy',
+        'Jean Grey'
+      ],
+      correctAnswer: 'Gwen Stacy'
+    },    {
+      question: 'What planet does Superman come from?',
+      answers: [
+        'Nabiru',
+        'Pluto',
+        'Planet X',
+        'Krypton'
+      ],
+      correctAnswer: 'Krypton'
     }
+
   ],
   quizStarted: false,
   questionNumber: 0,
