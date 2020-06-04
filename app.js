@@ -4,7 +4,6 @@
  * Example store structure
  */
 
-let increment=0;
 
 const store = {
   // 5 or more questions are required
@@ -12,12 +11,12 @@ const store = {
     {
       question: 'What color is the Incredible Hulk?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'Red',
+        'Orange',
+        'Pink',
+        'Green'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'Green'
     },
     {
       question: 'Which Avenger is a Norse God?',
@@ -78,7 +77,7 @@ function handleStartQuiz(){
 //generate html for start page
 function generateStartHtml(){
   return `<h2>Test your Superhero knowledge!</h2>
-  <button class='start-quiz'>Start Quiz</button>`;
+  <div class="button-size"><button class='start-quiz'>Start Quiz</button></div>`;
 }
 
 //renders starting page when count=0
@@ -134,26 +133,45 @@ function imageChooser(){
   }
 }
 
-//question page html generator
+//QUESTION PAGE html generator
 function generateQuestionHtml(){
   const imageUrl=imageChooser();
 
-  return `<h2>Question ${store.questionNumber}:</h2>
-  ${store.questions[store.questionNumber-1].question}
-  <div class='question-image'><${imageUrl}></div>
-  <form id="js-shopping-list-form">
-      <input type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[0]}">
-      <label for="answer">${store.questions[store.questionNumber-1].answers[0]}</label>
-      <input type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[1]}">
-      <label for="answer">${store.questions[store.questionNumber-1].answers[1]}</label>
-      <input type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[2]}">
-      <label for="answer">${store.questions[store.questionNumber-1].answers[2]}</label>
-      <input type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[3]}">
-      <label for="answer">${store.questions[store.questionNumber-1].answers[3]}</label>
-      <div>
-          <button class='submit-answer' type="submit">Submit</button>
-      </div>        
-  </form>`;
+  return `<div class='question-image'><${imageUrl}></div>
+ 
+  <h2>Question ${store.questionNumber} out of 5</h2>
+  
+
+  <div class="wrapper question">${store.questions[store.questionNumber-1].question}</div>
+  <div class="wrapper answer-selections">
+    <form id="js-shopping-list-form">
+    <div class="content">
+        <div>
+          <input required type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[0]}">
+          <label for="answer">${store.questions[store.questionNumber-1].answers[0]}</label>
+        </div>
+        <div>
+          <input required type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[1]}">
+          <label for="answer">${store.questions[store.questionNumber-1].answers[1]}</label>
+        </div>
+        <div>
+          <input required type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[2]}">
+          <label for="answer">${store.questions[store.questionNumber-1].answers[2]}</label>
+        </div>
+        <div>
+          <input required type="radio" name="answer" class="answer" value="${store.questions[store.questionNumber-1].answers[3]}">
+          <label for="answer">${store.questions[store.questionNumber-1].answers[3]}</label>
+        </div>
+        </div>
+        <div class="button-size">
+        <button class='submit-answer' type="submit">Submit</button>
+    </div>       
+    </form>
+    <div class="scores-container-answer-page">
+    <div>Right: ${store.score}</div>
+    <div>Wrong: ${store.questionNumber-1-store.score}</div>
+  </div>
+  </div>`;
 }
 
 //render question page
@@ -164,15 +182,10 @@ function renderQuestion(){
 
 //handles the next question event on correct render and incorrect render
 function handleNextQuestionEvent(){
-  
 
   $('main').on('click','.next-question',(event)=>{
     event.preventDefault();
     store.questionNumber+=1;
-    increment++;
-    console.log('increment',increment );
-
-    console.log(store.questionNumber);
     store.correctToggle='unanswered';
 
 
@@ -181,12 +194,24 @@ function handleNextQuestionEvent(){
   return 0;
 }
 
-//generates html for when the answer is incorrect
+//generates html for when the answer is INCORRECT
 function generateCorrectHtml(){
-  return `<h2>Correct!</h2>
-  <div>Right: ${store.score}</div>
-  <div>Wrong: ${store.questionNumber-store.score}</div>
-  <button class='next-question'>Next</button>`;
+  return `
+  <div class="wrapper">
+    <h2>Correct!</h2>
+  </div>
+    <div class="wrapper content">
+      <div class="right_answer_container">
+        <div>Right answer: ${store.questions[store.questionNumber-1].correctAnswer}</div>
+      </div>
+      <div class="scores-container">
+        <div>Right: ${store.score}</div>
+        <div>Wrong: ${store.questionNumber-store.score}</div>
+      </div>
+    </div>
+
+      <div class="button-size"><button class='next-question'>Next</button></div>
+    </div>`;
 }
 
 //renders Correct page when selected answer= correct answer
@@ -194,17 +219,26 @@ function renderCorrect(){
   const correctText=generateCorrectHtml(store.questionNumber);
   $('main').html(correctText);
 
-  console.log(store.questionNumber);
 }
 
-//generates html for when the answer is correct
+//generates html for when the answer is CORRECT
 function generateIncorrectHtml(){
-  return `<h2>Incorrect =(</h2>
-    <h3>Right answer:</h3>
-    <div>${store.questions[store.questionNumber-1].correctAnswer}</div>
-    <div>Right: ${store.score}</div>
-    <div>Wrong: ${store.questionNumber-store.score}</div>
-    <button class='next-question'>Next</button>`;
+  return `
+  <div class="wrapper">
+    <h2>Incorrect =(</h2>
+  </div>
+    <div class="wrapper content">
+      <div class="right_answer_container">
+        <div>Right answer: ${store.questions[store.questionNumber-1].correctAnswer}</div>
+      </div>
+      <div class="scores-container">
+        <div>Right: ${store.score}</div>
+        <div>Wrong: ${store.questionNumber-store.score}</div>
+      </div>
+    </div>
+
+      <div class="button-size"><button class='next-question'>Next</button></div>
+    </div>`;
 }
 
 //renders Incorrect page when selected answer!= correct answer
@@ -220,24 +254,32 @@ function handleNewGameEvent(){
   $('main').on('click','.new-game',(event)=>{
     event.preventDefault();
     store.questionNumber = 0;
+    store.score = 0;
     renderQuiz();
   });
   return 0;
 }
 
-//generates End of Quiz HTML
+//generates END OF QUIZ HTML
 function generateEndHtml(){
-  return `<h2>End of Quiz</h2>
-    <div>Score: ${store.score} out of 5</div>
-    <button class='new-game'>New Game</button>`;
+  return `
+  <div class="wrapper">
+    <h2>End of Quiz</h2>
+  </div>
+    <div class="wrapper content">
+      <div>Score: ${store.score} out of 5</div>
+    </div>
+    <div>
+      <div class="button-size"><button class='new-game'>New Game</button></div>
+    </div>`;
 }
+
 
 //renders End of Quiz page when count=6
 function renderEnd(){
   const endText=generateEndHtml(store.questionNumber);
   $('main').html(endText);
 
-  console.log('you are at end');  
 }
 
 
@@ -273,9 +315,9 @@ function renderEnd(){
 function renderQuiz(){
   //display html based off of which page we're on and if the question has been answered.
 
-  console.log(store.questionNumber);
-
-
+    console.log(store.questionNumber, 'question number');
+    console.log(store.score, 'score');
+  
   if(store.questionNumber===0){
     renderStart(store);
   }else if(store.questionNumber===6){
