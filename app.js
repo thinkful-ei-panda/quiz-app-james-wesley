@@ -175,7 +175,7 @@ function handleNextQuestionEvent(){
     console.log(store.questionNumber);
     store.correctToggle='unanswered';
 
-    $(event.target).unbind( "click" );
+
     renderQuiz();
   });
   return 0;
@@ -208,7 +208,7 @@ function generateIncorrectHtml(){
     <div>Score:</div>
     <div>Right: 2</div>
     <div>Wrong: 3</div>
-    <button class='next-question'>Next</button>`;
+    <button class='next-question-${store.questionNumber}'>Next</button>`;
 }
 
 //renders Incorrect page when selected answer!= correct answer
