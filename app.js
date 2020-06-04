@@ -205,7 +205,7 @@ function generateIncorrectHtml(){
     <div>Score:</div>
     <div>Right: 2</div>
     <div>Wrong: 3</div>
-    <button class='next-question-${store.questionNumber}'>Next</button>`;
+    <button class='next-question'>Next</button>`;
 }
 
 //renders Incorrect page when selected answer!= correct answer
@@ -279,12 +279,12 @@ function handleQuiz(){
   
 
 
-  //if questionNumber = 1-5 and correctToggle= 'unanswered' and render question
+//if questionNumber = 1-5 and correctToggle= 'unanswered' and render question
 
-  //if questionNumber = 1-5 and correctToggle= 'correct' then render correct
+//if questionNumber = 1-5 and correctToggle= 'correct' then render correct
 
-  //if questionNumber = 1-5 and correctToggle= 'incorrect' then render incorrect
+//if questionNumber = 1-5 and correctToggle= 'incorrect' then render incorrect
 
-  //if questionNumber = 6 render end
+//if questionNumber = 6 render end
 
 $(handleQuiz);
