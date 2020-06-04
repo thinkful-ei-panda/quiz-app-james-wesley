@@ -98,7 +98,7 @@ function handleSubmitAnswerEvent(){
 
     if(answer===store.questions[store.questionNumber-1].correctAnswer){
       store.correctToggle='correct';
-    }else{
+    }else {
       store.correctToggle='incorrect';
     }
     console.log(answer,store.correctToggle);
