@@ -76,7 +76,7 @@ function handleStartQuiz(){
 
 //generate html for start page
 function generateStartHtml(){
-  return `<h2>Test your Superhero knowledge!</h2>
+  return `<div class='start-page-header'><h2>Test your Superhero knowledge!</h2></div>
   <div class="button-size"><button class='start-quiz'>Start Quiz</button></div>`;
 }
 
@@ -84,7 +84,6 @@ function generateStartHtml(){
 function renderStart(){
   const startText=generateStartHtml(); 
   $('main').html(startText);
-  $(handleStartQuiz);
   return 0;
 }
 
@@ -266,7 +265,7 @@ function generateEndHtml(){
   <div class="wrapper">
     <h2>End of Quiz</h2>
   </div>
-    <div class="wrapper content">
+    <div class="wrapper content end-content-container">
       <div>Score: ${store.score} out of 5</div>
     </div>
     <div>
@@ -317,6 +316,7 @@ function renderQuiz(){
 
     console.log(store.questionNumber, 'question number');
     console.log(store.score, 'score');
+    console.log(store.correctToggle, 'correctToggle');
   
   if(store.questionNumber===0){
     renderStart(store);
@@ -336,6 +336,7 @@ function renderQuiz(){
 
 function handleQuiz(){
   renderQuiz();
+  handleStartQuiz();
   handleNextQuestionEvent();
   handleSubmitAnswerEvent();
   handleNewGameEvent();

@@ -115,3 +115,77 @@ main .question {
   text-align: center;
   font-size: 25px;
 }
+
+@media (min-width: 700px){
+  
+  h1{
+    font-size: 100px;
+  }
+
+  body{
+    font-size:40px;
+  }
+
+  .start-page-header{
+    padding:100px;
+  }
+
+  .start-page-header h2{
+    font-size: 50px;
+  }
+
+  .start-quiz{
+    font-size: 60px;
+    padding:10px 20px 10px 20px ;
+  }
+
+  .question-image{
+    width:40%;
+  }
+
+  .answer-selections form .content{
+    padding:20px 0px;
+    margin-bottom: 20px;
+  }
+
+  .answer-selections form div{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  label{
+    padding-left: 10px;
+  }
+
+  .wrapper {
+    width: 60%;
+    margin-bottom: 5px;
+  }
+
+  .scores-container-answer-page {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 60px;
+    }
+
+  .right_answer_container {
+    font-size: 40px;
+  }
+
+  .end-content-container{
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+
+
+
+
+
+
+
+}
