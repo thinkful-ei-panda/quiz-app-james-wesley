@@ -98,6 +98,7 @@ function handleSubmitAnswerEvent(){
 
     if(answer===store.questions[store.questionNumber-1].correctAnswer){
       store.correctToggle='correct';
+      store.score++;
     }else {
       store.correctToggle='incorrect';
     }
@@ -183,9 +184,8 @@ function handleNextQuestionEvent(){
 //generates html for when the answer is incorrect
 function generateCorrectHtml(){
   return `<h2>Correct!</h2>
-  <div>Score:</div>
-  <div>Right: 2</div>
-  <div>Wrong: 3</div>
+  <div>Right: ${store.score}</div>
+  <div>Wrong: ${store.questionNumber-store.score}</div>
   <button class='next-question'>Next</button>`;
 }
 
@@ -201,10 +201,9 @@ function renderCorrect(){
 function generateIncorrectHtml(){
   return `<h2>Incorrect =(</h2>
     <h3>Right answer:</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint consequuntur aliquam dolores voluptatem quibusdam voluptas. Quisquam soluta possimus adipisci error, sequi tempora non consequuntur necessitatibus porro ea distinctio nemo nesciunt?</p>
-    <div>Score:</div>
-    <div>Right: 2</div>
-    <div>Wrong: 3</div>
+    <div>${store.questions[store.questionNumber-1].correctAnswer}</div>
+    <div>Right: ${store.score}</div>
+    <div>Wrong: ${store.questionNumber-store.score}</div>
     <button class='next-question'>Next</button>`;
 }
 
@@ -214,8 +213,30 @@ function renderIncorrect(){
   $('main').html(incorrectText);
 
 }
+
+//handles new game event
+function handleNewGameEvent(){
+  
+  $('main').on('click','.new-game',(event)=>{
+    event.preventDefault();
+    store.questionNumber = 0;
+    renderQuiz();
+  });
+  return 0;
+}
+
+//generates End of Quiz HTML
+function generateEndHtml(){
+  return `<h2>End of Quiz</h2>
+    <div>Score: ${store.score} out of 5</div>
+    <button class='new-game'>New Game</button>`;
+}
+
 //renders End of Quiz page when count=6
 function renderEnd(){
+  const endText=generateEndHtml(store.questionNumber);
+  $('main').html(endText);
+
   console.log('you are at end');  
 }
 
@@ -275,8 +296,8 @@ function handleQuiz(){
   renderQuiz();
   handleNextQuestionEvent();
   handleSubmitAnswerEvent();
+  handleNewGameEvent();
 }
-  
 
 
 //if questionNumber = 1-5 and correctToggle= 'unanswered' and render question
