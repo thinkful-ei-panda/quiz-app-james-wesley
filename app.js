@@ -158,8 +158,7 @@ function generateQuestionHtml(){
 //render question page
 function renderQuestion(){
   const questionText=generateQuestionHtml(store.questionNumber);
-  $('main').html(questionText);
-  $(handleSubmitAnswerEvent);  
+  $('main').html(questionText); 
 }
 
 //handles the next question event on correct render and incorrect render
@@ -196,8 +195,6 @@ function renderCorrect(){
   $('main').html(correctText);
 
   console.log(store.questionNumber);
-
-  $(handleNextQuestionEvent); 
 }
 
 //generates html for when the answer is correct
@@ -215,7 +212,6 @@ function generateIncorrectHtml(){
 function renderIncorrect(){  
   const incorrectText=generateIncorrectHtml(store.questionNumber);
   $('main').html(incorrectText);
-  $(handleNextQuestionEvent); 
 
 }
 //renders End of Quiz page when count=6
@@ -273,6 +269,13 @@ function renderQuiz(){
     console.log('i');
     renderIncorrect(store);
   }
+}
+
+function handleQuiz(){
+  renderQuiz();
+  handleNextQuestionEvent();
+  handleSubmitAnswerEvent();
+}
   
 
 
@@ -283,7 +286,5 @@ function renderQuiz(){
   //if questionNumber = 1-5 and correctToggle= 'incorrect' then render incorrect
 
   //if questionNumber = 6 render end
-  return 0;
-}
 
-$(renderQuiz);
+$(handleQuiz);
