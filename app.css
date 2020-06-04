@@ -6,3 +6,7 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+
+img {
+  width: 300px;
+}
